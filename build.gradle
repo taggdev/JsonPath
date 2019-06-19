@@ -9,6 +9,13 @@ buildscript {
     }
 }
 
+//TODO start
+buildscript.repositories.collect {
+    repository -> println "build script repo: ${repository.url}"
+}
+//TODO End
+
+
 ext {
     libs = [
             gson: 'com.google.code.gson:gson:2.8.5',
@@ -45,6 +52,11 @@ allprojects {
             options.addStringOption('Xdoclint:none', '-quiet')
         }
     }
+
+    //TODO Start
+    repositories.collect { repository -> println "check all projects methods repo: ${repository.url}" }
+    println "check all projects method: ${project.name}"
+    //TODO End
 }
 
 subprojects {
@@ -79,8 +91,8 @@ subprojects {
     }
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.1'
+wrapper {
+    gradleVersion = '5.0'
 }
 
 //Task used by Heroku for staging
